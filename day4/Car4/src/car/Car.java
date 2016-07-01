@@ -19,6 +19,11 @@ public class Car {
     double currentFuel = 8;
     double mpg = 26.4;
     int numberOfPeopleInCar = 1;
+    int maxNumberOfPeopleInCar = 6;
+    
+public Car() {
+    
+}
     
     public Car(int customMaxSpeed, double customWeight, boolean customIsTheCarOn) {
         minSpeed = customMaxSpeed;
@@ -26,6 +31,29 @@ public class Car {
         isTheCarOn = customIsTheCarOn;
         
     }
+    
+    //Getters and Setters
+    
+    public int getMaxSpeed() {
+        return this.maxSpeed;
+    }
+    
+    public void setMaxSpeed(int newMaxSpeed) {
+        this.maxSpeed = newMaxSpeed;
+    }
+    
+    public int getMinSpeed() {
+        return this.minSpeed;
+    }
+    
+    public double getWeight() {
+        return this.weight;
+    }
+    
+    public boolean getIsTheCarOn() {
+        return this.isTheCarOn;
+    }
+    
     public void printVariables() {
         System.out.println("This is the max speed " + maxSpeed);
         System.out.println(minSpeed);
@@ -37,17 +65,24 @@ public class Car {
         
     }
     
-    public void upgradeMinSpeed() {
-        minSpeed = maxSpeed;
-        maxSpeed = maxSpeed + 1;
+    public void upgradeMaxSpeed() {
+        setMaxSpeed(getMaxSpeed() + 10);
     }
     
     public void getIn() {
-        numberOfPeopleInCar++;
+        if (numberOfPeopleInCar < maxNumberOfPeopleInCar) {
+            numberOfPeopleInCar++;
+        } else {
+            System.out.println("The car is full!");
+        }
     }
     
     public void getOut() {
-        numberOfPeopleInCar--;
+        if (numberOfPeopleInCar > 0) {
+            numberOfPeopleInCar--;
+        } else {
+            System.out.println("No one is in the car.");
+        }
     }
     
     public double howManyMilesTillOutOfGas(){
@@ -58,16 +93,28 @@ public class Car {
         return maxFuel * mpg;
     }
     
+    public void turnTheCarOn() {
+        if (!isTheCarOn) {
+            isTheCarOn = true;
+        } else {
+            System.out.println("The Car is already on.");
+        }
+    }
+    
     public static void main(String[] args) {
         // TODO code application logic here
-        Car birthdayPresent = new Car(500, 5000.545, true);
-        birthdayPresent.printVariables();
-        birthdayPresent.getIn();
-        birthdayPresent.getIn();
-        birthdayPresent.getIn();
-        System.out.println("Miles left: " + birthdayPresent.howManyMilesTillOutOfGas());
-        System.out.println("Max Miles: " + birthdayPresent.maxMilesPerFillUp());
-        birthdayPresent.printVariables();
+        Car tommyCar = new Car();
+        tommyCar.getOut();
+        tommyCar.getOut();
+        tommyCar.getIn();
+        tommyCar.getIn();
+        tommyCar.getIn();
+        tommyCar.getIn();
+        tommyCar.getIn();
+        tommyCar.getIn();
+        tommyCar.getIn();
+        tommyCar.turnTheCarOn();
+        tommyCar.turnTheCarOn();
         
         //Car christmasPresent = new Car(550, 2000, false);
         //christmasPresent.printVariables();
